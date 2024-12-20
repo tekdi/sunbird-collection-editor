@@ -107,7 +107,7 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [
     { provide: DialcodeCursor, useExisting: DialcodeService },
   ],
-  entryComponents: [EditorComponent]
+  exports: [EditorComponent],
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) { }

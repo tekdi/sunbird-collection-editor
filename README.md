@@ -63,7 +63,7 @@ Follow below-mentioned steps to use it in plain javascript project:
 
 - Run command 
   ```bash
-    npm i @project-sunbird/sunbird-collection-editor-web-component
+    npm i @tekdi/sunbird-collection-editor-web-component
     npm i reflect-metadata
   ```
 
@@ -75,17 +75,17 @@ Follow below-mentioned steps to use it in plain javascript project:
               "src/assets",
               {
                 "glob": "**/*.*",
-                "input": "./node_modules/@project-sunbird/sunbird-collection-editor-web-component/assets",
+                "input": "./node_modules/@tekdi/sunbird-collection-editor-web-component/assets",
                 "output": "/assets/"
               }
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@project-sunbird/sunbird-collection-editor-web-component/styles.css"
+              "node_modules/@tekdi/sunbird-collection-editor-web-component/styles.css"
             ],
             "scripts": [
               "node_modules/reflect-metadata/Reflect.js",
-              "node_modules/@project-sunbird/sunbird-collection-editor-web-component/sunbird-collection-editor.js"
+              "node_modules/@tekdi/sunbird-collection-editor-web-component/sunbird-collection-editor.js"
             ]
 
   ```
@@ -146,7 +146,7 @@ This guide explains how to set up your Angular project to begin using the collec
 If you are new to Angular or getting started with a new Angular application, see [Angular's full Getting Started Guide](https://angular.io/start) and [Setting up your environment](https://angular.io/guide/setup-local).
 
 > **_NOTE:_**
-  `@project-sunbird/sunbird-collection-editor@5.1.*` versions will refer to angular 9 to 12 upgradation changes.
+  `@tekdi/sunbird-collection-editor@5.1.*` versions will refer to angular 9 to 12 upgradation changes.
 
 
 For existing applications, follow the steps below to begin using Collection editor library.
@@ -155,7 +155,7 @@ For existing applications, follow the steps below to begin using Collection edit
 The following commands will add `sunbird-collection-editor` library to your package.json file along with its dependencies.
 
 ```red
-npm i @project-sunbird/sunbird-collection-editor --save
+npm i @tekdi/sunbird-collection-editor --save
 ```
 
 Don't forget to install the below peer dependencies of the library in your application. that need to be installed in order to use the library in your angular project.
@@ -238,7 +238,7 @@ Now open the `angular.json` file and add the following under `architect.build.as
 +        },
 +        {
 +          "glob": "**/*",
-+          "input": "node_modules/@project-sunbird/sunbird-collection-editor/lib/assets",
++          "input": "node_modules/@tekdi/sunbird-collection-editor/lib/assets",
 +          "output": "/assets/"
 +        },
 +        {
@@ -323,7 +323,7 @@ Include `CollectionEditorLibraryModule` in your app module:
 
 ```diff
   import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-+  import { CollectionEditorLibraryModule, EditorCursor } from '@project-sunbird/sunbird-collection-editor';
++  import { CollectionEditorLibraryModule, EditorCursor } from '@tekdi/sunbird-collection-editor';
   import { RouterModule } from '@angular/router';
   import { QuestionCursor } from '@project-sunbird/sunbird-quml-player';
   import { EditorCursorImplementationService } from './editor-cursor-implementation.service';

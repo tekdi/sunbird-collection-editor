@@ -9,6 +9,7 @@ import { EditorService } from '../../services/editor/editor.service';
 })
 export class LibraryPlayerComponent implements OnInit {
 @Input() contentListDetails;
+@Input() contentDataConfig;
 @Output() moveEvent = new EventEmitter<any>();
   constructor(public telemetryService: EditorTelemetryService, public editorService: EditorService,
               public configService: ConfigService) { }

@@ -18,6 +18,7 @@ export class LibraryComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() libraryInput: any;
   @Output() libraryEmitter = new EventEmitter<any>();
   public searchFormConfig: any;
+  public contentDataConfig: any;
   public pageId = 'add_from_library';
   public contentList: any;
   public selectedContent: any;
@@ -49,6 +50,7 @@ export class LibraryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedUnit = _.get(activeNode, 'data.id');
     this.collectionId = _.get(this.libraryInput, 'collectionId');
     this.searchFormConfig = _.get(this.libraryInput, 'searchFormConfig');
+    this.contentDataConfig = _.get(this.libraryInput, 'contentDataConfig');
     this.editorService.fetchCollectionHierarchy(this.collectionId).subscribe((response: any) => {
       this.collectionhierarcyData = response.result.content;
       this.collectionHierarchy = this.getUnitWithChildren(this.collectionhierarcyData, this.collectionId);

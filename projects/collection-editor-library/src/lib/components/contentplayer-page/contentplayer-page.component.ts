@@ -17,6 +17,7 @@ export class ContentplayerPageComponent implements OnInit, OnChanges {
   @ViewChild("epubPlayer") epubPlayer: ElementRef;
   @ViewChild("videoPlayer") videoPlayer: ElementRef;
   @Input() contentMetadata: any;
+  @Input() contentDataConfig: any;
   public contentDetails: any;
   public playerConfig: any;
   public content: any;
@@ -135,5 +136,16 @@ export class ContentplayerPageComponent implements OnInit, OnChanges {
         this.videoPlayer.nativeElement.append(videoElement);
       }
     }, 500)
+  }
+
+  getColumnClass(index: number): string {
+    console.log("index ===>", index);
+    if (index % 3 === 0) {
+      return 'six wide column';
+    } else if (index % 3 === 1) {
+      return 'four wide column';
+    } else {
+      return 'two wide column';
+    }
   }
 }

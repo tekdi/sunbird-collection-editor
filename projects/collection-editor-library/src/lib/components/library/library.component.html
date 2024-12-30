@@ -30,7 +30,7 @@
       </section>
       <!-- Right Player Sections -->
       <section class="sb-g-col-xs-12 sb-g-col-md-8 sb-g-col-lg-8 relative position ml-24">
-          <lib-library-player [contentListDetails]="selectedContent" (moveEvent)="showResourceTemplate($event)"></lib-library-player>
+          <lib-library-player [contentListDetails]="selectedContent" [contentDataConfig]="contentDataConfig" (moveEvent)="showResourceTemplate($event)"></lib-library-player>
       </section>
     </div>
   </div>

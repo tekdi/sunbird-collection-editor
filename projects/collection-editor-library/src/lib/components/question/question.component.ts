@@ -35,7 +35,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy {
   public initialLeafFormConfig: any;
   public childFormData: any;
   @Output() questionEmitter = new EventEmitter<any>();
-  private onComponentDestroy$ = new Subject<any>();
+  private onComponentDestroy$ = new Subject<void>();
   toolbarConfig: any = {};
   public terms = false;
   public editorState: any = {};

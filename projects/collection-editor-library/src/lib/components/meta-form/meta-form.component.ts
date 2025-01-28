@@ -124,6 +124,21 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
     let formConfig: any = (_.get(metaDataFields, 'visibility') === 'Default') || isRootNode ? _.cloneDeep(this.rootFormConfig) : _.cloneDeep(this.unitFormConfig);
     formConfig = formConfig && _.has(_.first(formConfig), 'fields') ? formConfig : [{name: '', fields: formConfig}];
     if (!_.isEmpty(this.frameworkDetails.targetFrameworks)) {
+      // This is added to handled SCP CCTA and SCTA User for Pratham
+      if (!_.isEmpty(this.editorService.userSpecificFrameworkField?.value) &&
+      !_.isUndefined(this.editorService.userSpecificFrameworkField?.value)) {
+        let filteredFrameworkCategories:any = [];
+        filteredFrameworkCategories = _.cloneDeep(this.frameworkDetails.targetFrameworks[0].categories);
+        filteredFrameworkCategories.forEach(category => {
+          if (category.code === this.editorService.userSpecificFrameworkField.code) {
+            category.terms = category.terms.filter(term =>
+              this.editorService.userSpecificFrameworkField.value.includes(term.name)
+            );
+          }
+        });
+        console.log("filteredFrameworkCategories ===>", filteredFrameworkCategories);
+        this.frameworkDetails.targetFrameworks[0].categories = filteredFrameworkCategories;
+      }
       _.forEach(this.frameworkDetails.targetFrameworks, (framework) => {
         _.forEach(formConfig, (section) => {
           _.forEach(section.fields, field => {

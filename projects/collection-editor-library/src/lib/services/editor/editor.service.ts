@@ -44,6 +44,7 @@ export class EditorService {
   treeData: any;
   private _qualityFormConfig: any;
   private _isReviewerQualityCheckEnabled: boolean;
+  private _userSpecificFrameworkField: any;
   constructor(public treeService: TreeService, private toasterService: ToasterService,
               public configService: ConfigService, private telemetryService: EditorTelemetryService,
               private publicDataService: PublicDataService, private dataService: DataService, public httpClient: HttpClient) {
@@ -55,6 +56,7 @@ export class EditorService {
       this._editorConfig.config = _.assign(this.configService.editorConfig.default, this._editorConfig.config);
     }
     this._editorMode = _.get(this._editorConfig, 'config.mode').toLowerCase();
+    this._userSpecificFrameworkField = _.get(this._editorConfig, 'config.userSpecificFrameworkField', []);
     this.setIsReviewerEditEnable(_.get(this._editorConfig, 'context.enableReviewEdit', false));
     this.setQualityFormConfig(_.get(this._editorConfig, 'config.qualityFormConfig', null));
     this.setIsReviewerQualityCheckEnabled(_.get(this._editorConfig, 'config.isReviewerQualityCheckEnabled', false));
@@ -82,6 +84,10 @@ export class EditorService {
 
   get editorMode() {
     return this._editorMode;
+  }
+
+  get userSpecificFrameworkField() {
+    return this._userSpecificFrameworkField;
   }
 
   get isReviewerEditEnable() {

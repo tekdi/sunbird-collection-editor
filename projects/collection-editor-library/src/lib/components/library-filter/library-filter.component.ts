@@ -47,7 +47,10 @@ export class LibraryFilterComponent implements OnInit, OnChanges {
     }));
 
     if (_.isEmpty(contentTypes)) {
-      contentTypes = _.map(this.helperService.contentPrimaryCategories, 'name');
+      contentTypes = _.union(
+        _.map(this.helperService.contentPrimaryCategories, 'name'),
+        _.map(this.helperService.questionsetPrimaryCategories, 'name')
+      );
     }
 
     this.currentFilters = {
@@ -129,7 +132,10 @@ export class LibraryFilterComponent implements OnInit, OnChanges {
 
   resetFilter() {
     this.filterValues = {
-      primaryCategory: _.map(this.helperService.contentPrimaryCategories, 'name')
+      primaryCategory: _.union(
+        _.map(this.helperService.contentPrimaryCategories, 'name'),
+        _.map(this.helperService.questionsetPrimaryCategories, 'name')
+      )
     };
     this.searchQuery = '';
     _.forEach(this.filterFields, (field) => {

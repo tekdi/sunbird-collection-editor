@@ -425,7 +425,10 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
             childrenData[key] = _.map(this.helperService.questionPrimaryCategories, 'name') || this.editorConfig.config.questionPrimaryCategories;
             break;
           case 'Content':
-            childrenData[key] = _.map(this.helperService.contentPrimaryCategories, 'name') || [];
+            childrenData[key] = _.union(
+              _.map(this.helperService.contentPrimaryCategories, 'name'),
+              _.map(this.helperService.questionsetPrimaryCategories, 'name')
+            ) || [];
             break;
           case 'Collection':
             childrenData[key] = _.map(this.helperService.collectionPrimaryCategories, 'name') || [];

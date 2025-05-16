@@ -51,7 +51,7 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
     if(_.isUndefined(this.appIconConfig)) {
       this.appIconConfig = _.find(this.rootFormConfig, {code: 'appIcon'});
     }
-    if (!_.isUndefined(this.appIconConfig) && isRootNode === true) {
+    if (!_.isUndefined(this.appIconConfig)) {
       this.showAppIcon = true;
     } else {
       this.showAppIcon = false;

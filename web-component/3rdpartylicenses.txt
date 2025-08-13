@@ -159,6 +159,8 @@ MIT
 
 @project-sunbird/sunbird-resource-library
 
+@tekdi/common-form-elements-full
+
 @tekdi/sunbird-collection-editor
 
 ally.js

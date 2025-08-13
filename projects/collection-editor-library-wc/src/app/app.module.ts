@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { createCustomElement } from '@angular/elements';
 import { RouterModule } from '@angular/router';
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
-import { CommonFormElementsModule, DialcodeCursor } from '@project-sunbird/common-form-elements-full';
+import { CommonFormElementsModule, DialcodeCursor } from '@tekdi/common-form-elements-full';
 import { SuiModule } from '@project-sunbird/ng2-semantic-ui';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';

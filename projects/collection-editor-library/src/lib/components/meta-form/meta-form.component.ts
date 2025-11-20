@@ -336,6 +336,16 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
   }
 
   valueChanges(event: any) {
+        // Normalize null values for all nestedselect inputs to empty arrays
+        if (this.formFieldProperties && Array.isArray(this.formFieldProperties)) {
+          _.forEach(this.formFieldProperties, (section) => {
+            _.forEach(section.fields, (field) => {
+              if (field && field.inputType === 'nestedselect' && _.has(event, field.code) && event[field.code] === null) {
+                event[field.code] = [];
+              }
+            });
+          });
+        }
     if (_.has(event, 'shuffle')) {
       this.showShuffleMessage(event);
     }

@@ -176,6 +176,36 @@ export class EditorService {
     return this.publicDataService.get(req);
   }
 
+  /**
+   * Fetch QuestionSet hierarchy using questionset/v2/hierarchy API
+   * Used specifically for QUML player
+   */
+  fetchQuestionSetHierarchy(questionSetId): Observable<any> {
+    const hierarchyUrl = `${_.get(this.configService.urlConFig, 'URLS.QuestionSet.HIERARCHY_READ')}/${questionSetId}`;
+    const req = {
+      url: hierarchyUrl,
+      param: { mode: 'edit' }
+    };
+    return this.publicDataService.get(req);
+  }
+
+  /**
+   * Fetch QuestionSet details using questionset/v2/read API
+   * Used specifically for QUML player
+   */
+  fetchQuestionSetDetails(questionSetId): Observable<any> {
+    // Construct the questionset read URL with specific fields
+    const readUrl = `questionset/v2/read/${questionSetId}`;
+    const req = {
+      url: readUrl,
+      param: { 
+        mode: 'edit',
+        fields: 'instructions,outcomeDeclaration'
+      }
+    };
+    return this.publicDataService.get(req);
+  }
+
   updateHierarchy(): Observable<any> {
     const url = this.configService.urlConFig.URLS[this.editorConfig.config.objectType];
     const req = {

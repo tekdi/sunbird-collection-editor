@@ -1,6 +1,6 @@
 export const courseEditorConfig = {
   context: {
-    identifier: "do_214238080073170944126",
+    identifier: "do_2142728685415464961374",
     channel: "scp-channel",
     authToken: "",
     sid: "wEWyS7CAtC8H6cZ2uzSGpYzgzPQOAG7d",

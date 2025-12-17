@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, of, throwError} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, mergeMap } from 'rxjs/operators';
-import { QuestionCursor } from '@project-sunbird/sunbird-quml-player';
+import { QuestionCursor } from '@tekdi/sunbird-quml-player';
 import { EditorCursor } from 'collection-editor-library';
 import * as _ from 'lodash-es';
 
@@ -58,7 +58,7 @@ export class EditorCursorImplementationService implements QuestionCursor, Editor
         headers: { 'Content-Type': 'application/json' }
     };
     const requestParam = {
-      url: 'api/question/v1/list',
+      url: 'api/question/v2/list', // Updated to v2 for QUML player compatibility
       data: {
         request: {
           search: {

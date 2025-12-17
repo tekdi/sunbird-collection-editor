@@ -52,8 +52,8 @@ app.all(['/api/framework/v1/read/*',
         return proxyReqOpts;
     }
 }));
-app.use(['/action/questionset/v1/*',
-    '/action/question/v1/*',
+app.use(['/action/questionset/v2/*',
+    '/action/question/v2/*',
     '/action/collection/v1/*',
     '/action/collection/v1/*',
     // '/action/content/v3/hierarchy/*'

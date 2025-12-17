@@ -27,7 +27,7 @@ import { OptionsComponent } from '../../../collection-editor-library/src/lib/com
 import { AnswerComponent } from '../../../collection-editor-library/src/lib/components/answer/answer.component';
 import { CkeditorToolComponent } from '../../../collection-editor-library/src/lib/components/ckeditor-tool/ckeditor-tool.component';
 import { QuestionComponent } from '../../../collection-editor-library/src/lib/components/question/question.component';
-import { QumlLibraryModule } from '@project-sunbird/sunbird-quml-player';
+import { QumlLibraryModule } from '@tekdi/sunbird-quml-player';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TelemetryInteractDirective } from '../../../collection-editor-library/src/lib/directives/telemetry-interact/telemetry-interact.directive';
 import { DateFormatPipe } from '../../../collection-editor-library/src/lib/directives/date-format/date-format.pipe';

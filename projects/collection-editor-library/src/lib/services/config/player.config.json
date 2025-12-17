@@ -92,6 +92,9 @@
        ],
        "epub-player": [
           "application/epub"
+       ],
+       "quml-player":[
+          "application/vnd.sunbird.questionset"
        ]
     },
     "baseURL":"/content/preview/preview.html?webview=true",

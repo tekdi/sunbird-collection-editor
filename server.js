@@ -9,8 +9,8 @@ const latexService = require('./latexService.js')
 
 // ENV Variables
 const BASE_URL = 'https://dev-middleware.prathamdigital.org';
-const API_AUTH_TOKEN = "XXYY";
-const TENANT_ID = "ef99949b-7f3a-4a5f-806a-e67e683e38f3";
+const API_AUTH_TOKEN = "ABCD";
+const TENANT_ID = "uuid";
 
 
 var app = express();

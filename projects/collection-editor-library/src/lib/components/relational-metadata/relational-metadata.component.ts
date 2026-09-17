@@ -13,6 +13,7 @@ export class RelationalMetadataComponent implements OnInit, OnChanges {
 
   @Input() contentMetadata: any;
   @Input() formConfig: any;
+  @Input() validationTrigger: any;
   public contentId;
   @Output() statusChanges = new EventEmitter<any>();
   @Output() valueChanges = new EventEmitter<any>();

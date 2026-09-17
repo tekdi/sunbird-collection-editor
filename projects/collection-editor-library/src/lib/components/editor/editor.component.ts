@@ -60,6 +60,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   public showPreview = false;
   public actionType: string;
   private formStatusMapper: { [key: string]: boolean } = {};
+  public validationTrigger = 0;
   public targetFramework;
   public organisationFramework;
   public primaryCategoryDef: any;
@@ -706,6 +707,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
         this.treeService.highlightNode(key, 'add');
       }
     });
+    this.validationTrigger++;
     return false;
   }
 

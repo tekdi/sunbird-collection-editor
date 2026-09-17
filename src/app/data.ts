@@ -1,6 +1,6 @@
 export const courseEditorConfig = {
   context: {
-    identifier: "do_214238080073170944126",
+    identifier: "do_21462118694449152017",
     channel: "scp-channel",
     authToken: "",
     sid: "wEWyS7CAtC8H6cZ2uzSGpYzgzPQOAG7d",
@@ -14,7 +14,7 @@ export const courseEditorConfig = {
       pid: "collection-portal",
     },
     actor: {
-      id: "15155b7a-5316-4bb2-992a-772093e85f44",
+      id: "15155b7a-5316-4bb2-992a-772093e85f44", 
       type: "User",
     },
     contextRollup: {

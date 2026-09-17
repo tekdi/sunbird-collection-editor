@@ -176,7 +176,7 @@
               {{configService.labelConfig?.lbl?.Questiondetails}}
             </div>
             <div class="form-container px-30">
-              <sb-dynamic-form [config]="questionFormConfig" (initialize)="output($event)"
+              <sb-dynamic-form [config]="questionFormConfig" [validationTrigger]="metadataValidationTrigger" (initialize)="output($event)"
                 (statusChanges)="onStatusChanges($event)" (valueChanges)="valueChanges($event)"></sb-dynamic-form>
             </div>
           </div>

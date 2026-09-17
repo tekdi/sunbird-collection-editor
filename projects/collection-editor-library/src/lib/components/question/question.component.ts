@@ -85,6 +85,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy {
   public framework;
   public frameworkDetails: any = {};
   public questionMetadataFormStatus = true;
+  public metadataValidationTrigger = 0;
   public buttonLoaders = {
     saveButtonLoader: false,
     review: false
@@ -1214,6 +1215,7 @@ export class QuestionComponent implements OnInit, AfterViewInit, OnDestroy {
     _.forEach(this.questionFormConfig, (formFieldCategory) => {
       if (formFieldCategory.required && !this.childFormData[formFieldCategory.code]) {
         this.showFormError = true;
+        this.metadataValidationTrigger++;
         this.toasterService.error(_.get(this.configService, 'labelConfig.messages.error.008'));
         return false;
       }

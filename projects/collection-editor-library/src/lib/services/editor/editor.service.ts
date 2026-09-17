@@ -55,7 +55,7 @@ export class EditorService {
     if (this.configService.editorConfig && this.configService.editorConfig.default) {
       this._editorConfig.config = _.assign(this.configService.editorConfig.default, this._editorConfig.config);
     }
-    this._editorMode = _.get(this._editorConfig, 'config.mode').toLowerCase();
+    this._editorMode = _.get(this._editorConfig, 'config.mode', 'edit').toLowerCase();
     this._userSpecificFrameworkField = _.get(this._editorConfig, 'config.userSpecificFrameworkField', []);
     this.setIsReviewerEditEnable(_.get(this._editorConfig, 'context.enableReviewEdit', false));
     this.setQualityFormConfig(_.get(this._editorConfig, 'config.qualityFormConfig', null));

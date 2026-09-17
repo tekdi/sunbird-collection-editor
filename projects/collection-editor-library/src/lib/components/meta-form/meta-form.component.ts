@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { merge, of, Subject, Subscription } from 'rxjs';
 import * as _ from 'lodash-es';
 import { takeUntil, filter, switchMap, map } from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
   @Input() rootFormConfig: any;
   @Input() unitFormConfig: any;
   @Input() nodeMetadata: any;
+  @Input() validationTrigger: any;
   @Output() toolbarEmitter = new EventEmitter<any>();
   private onComponentDestroy$ = new Subject<void>();
   public frameworkDetails: any = {};
@@ -37,7 +38,10 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
                 framworkServiceTemp = frameworkService;
                }
 
-  ngOnChanges() {
+  ngOnChanges(changes?: SimpleChanges) {
+    if (changes && !changes['rootFormConfig'] && !changes['unitFormConfig'] && !changes['nodeMetadata']) {
+      return;
+    }
     this.fetchFrameWorkDetails();
     this.setAppIconData();
     if (_.has(this.nodeMetadata, 'data.metadata.shuffle')) {

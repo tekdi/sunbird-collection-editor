@@ -1,0 +1,42 @@
+<div class="sb-input shell-field" *ngIf="field && formControlRef" [ngClass]="field.renderingHints?.class">
+  <label [attr.data-title]="field.description || null">{{field.label}}<span class="required" *ngIf="field.required"> *</span></label>
+
+  <div class="shell-select" [class.open]="isOpen" [class.disabled]="disabled"
+    [class.invalid]="formControlRef.invalid && formControlRef.touched">
+    <div class="shell-select__control" #control (click)="open()">
+      <input class="shell-select__input" type="text" [readonly]="disabled"
+        [placeholder]="selectedShell?.name || field.placeholder || ''"
+        [value]="isOpen ? searchText : (selectedShell?.name || '')"
+        (input)="onSearch($any($event.target).value)" (keydown.escape)="close()">
+      <button type="button" class="shell-select__clear" *ngIf="selectedShell && !disabled"
+        (click)="clearSelection($event)" aria-label="Clear">&times;</button>
+      <i class="dropdown icon shell-select__arrow"></i>
+    </div>
+
+    <div class="shell-select__panel" *ngIf="isOpen" [ngStyle]="panelStyle" [class.drop-up]="dropUp"
+      infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300" [scrollWindow]="false"
+      (scrolled)="onScroll()">
+      <div class="shell-select__clear-option" *ngIf="selectedShell && !disabled" (click)="clearSelection($event)">
+        &times; Clear selection
+      </div>
+      <div class="shell-option" *ngFor="let shell of displayShells; trackBy: trackByIdentifier"
+        [class.selected]="shell.identifier === selectedShell?.identifier" (click)="selectShell(shell)">
+        <div class="shell-option__title">
+          <span class="shell-option__name">
+            <i class="check icon" *ngIf="shell.identifier === selectedShell?.identifier"></i>{{shell.name}}
+          </span>
+          <span class="shell-option__status">{{shell.status}}</span>
+        </div>
+        <div class="shell-option__desc" *ngIf="shell.description">{{shell.description}}</div>
+        <div class="shell-option__meta">
+          <span>{{shell.identifier}}</span>
+          <span *ngIf="shell.framework">&middot; {{shell.framework}}</span>
+          <span *ngIf="shell.lastUpdatedOn">&middot; Updated {{shell.lastUpdatedOn | date:'dd MMM yyyy'}}</span>
+        </div>
+      </div>
+      <div class="shell-select__info" *ngIf="isLoading">Loading...</div>
+      <div class="shell-select__info" *ngIf="!isLoading && !shells.length">No shells found</div>
+    </div>
+  </div>
+  <div class="cf-error" *ngIf="formControlRef.errors?.required && formControlRef.touched">{{field.label}} is required</div>
+</div>

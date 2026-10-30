@@ -1,6 +1,8 @@
 <ng-container *ngIf="formFieldProperties">
-  <span class="meta-form">
+  <span class="meta-form" [class.has-shell-field]="shellField">
     <lib-collection-icon *ngIf="showAppIcon" [appIcon]="appIcon" [appIconConfig]="appIconConfig" (iconEmitter)="appIconDataHandler($event)"></lib-collection-icon>
+    <lib-shell-field *ngIf="shellField && shellControl" [field]="shellField" [disabled]="!shellField.editable"
+      [formControlRef]="shellControl"></lib-shell-field>
     <sb-dynamic-form [config]="formFieldProperties" [validationTrigger]="validationTrigger" (initialize)="outputData($event)" (statusChanges)="onStatusChanges($event)" (valueChanges)="valueChanges($event)"></sb-dynamic-form>
   </span>
 </ng-container>

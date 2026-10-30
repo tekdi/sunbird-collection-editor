@@ -15,6 +15,7 @@ import { EditorComponent } from '../../../collection-editor-library/src/lib/comp
 import { HeaderComponent } from '../../../collection-editor-library/src/lib/components/header/header.component';
 import { FancyTreeComponent } from '../../../collection-editor-library/src/lib/components/fancy-tree/fancy-tree.component';
 import { MetaFormComponent } from '../../../collection-editor-library/src/lib/components/meta-form/meta-form.component';
+import { ShellFieldComponent } from '../../../collection-editor-library/src/lib/components/shell-field/shell-field.component';
 import { LibraryComponent } from '../../../collection-editor-library/src/lib/components/library/library.component';
 import { LibraryFilterComponent } from '../../../collection-editor-library/src/lib/components/library-filter/library-filter.component';
 import { LibraryListComponent } from '../../../collection-editor-library/src/lib/components/library-list/library-list.component';
@@ -67,6 +68,7 @@ import { BrowserModule } from '@angular/platform-browser';
     HeaderComponent,
     FancyTreeComponent,
     MetaFormComponent,
+    ShellFieldComponent,
     LibraryComponent,
     LibraryFilterComponent,
     LibraryListComponent,

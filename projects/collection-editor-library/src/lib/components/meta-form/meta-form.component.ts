@@ -6,7 +6,7 @@ import { TreeService } from '../../services/tree/tree.service';
 import { EditorService } from '../../services/editor/editor.service';
 import { FrameworkService } from '../../services/framework/framework.service';
 import { HelperService } from '../../services/helper/helper.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { ConfigService } from '../../services/config/config.service';
 import { ToasterService } from '../../services/toaster/toaster.service';
 import * as moment from 'moment';
@@ -27,6 +27,11 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
   private onComponentDestroy$ = new Subject<void>();
   public frameworkDetails: any = {};
   public formFieldProperties: any;
+  public shellField: any;
+  public shellControl: UntypedFormControl;
+  private shellControlSubscription: Subscription;
+  private lastFormValue: any = {};
+  private lastFormStatus: any;
   public showAppIcon = false;
   public appIconConfig: any;
   public appIcon: any;
@@ -39,6 +44,9 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
                }
 
   ngOnChanges(changes?: SimpleChanges) {
+    if (changes && changes['validationTrigger'] && !changes['validationTrigger'].firstChange && this.shellControl) {
+      this.shellControl.markAsTouched();
+    }
     if (changes && !changes['rootFormConfig'] && !changes['unitFormConfig'] && !changes['nodeMetadata']) {
       return;
     }
@@ -272,7 +280,32 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
       });
     });
 
+    this.setShellField(formConfig);
     this.formFieldProperties = _.cloneDeep(formConfig);
+  }
+
+  // the shell field is taken out of the sb-dynamic-form config (and its section, if left empty)
+  // and rendered by lib-shell-field with its own control, merged back in valueChanges / onStatusChanges
+  setShellField(formConfig) {
+    if (this.shellControlSubscription) {
+      this.shellControlSubscription.unsubscribe();
+    }
+    this.shellField = _.cloneDeep(_.find(_.flatten(_.map(formConfig, 'fields')), { code: 'shell' }));
+    if (!this.shellField) {
+      this.shellControl = undefined;
+      return;
+    }
+    _.forEach(formConfig, section => {
+      section.fields = _.reject(section.fields, { code: this.shellField.code });
+    });
+    _.remove(formConfig, section => _.isEmpty(section.fields));
+    this.shellControl = new UntypedFormControl(this.shellField.default || '', this.shellField.required ? Validators.required : null);
+    this.shellControlSubscription = this.shellControl.valueChanges.subscribe(() => {
+      this.valueChanges({ ...this.lastFormValue });
+      if (this.lastFormStatus) {
+        this.onStatusChanges(this.lastFormStatus);
+      }
+    });
   }
   isReviewMode() {
     return  _.includes([ 'review', 'read', 'sourcingreview', 'orgreview' ], this.editorService.editorMode);
@@ -292,6 +325,17 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
   outputData(eventData: any) { }
 
   onStatusChanges(event) {
+    this.lastFormStatus = event;
+    if (this.shellControl && this.shellControl.invalid) {
+      event = {
+        ...event,
+        isValid: false,
+        isInvalid: true,
+        controls: [..._.get(event, 'controls', []), ..._.map(this.shellControl.errors, (value, key) => ({
+          control_name: this.shellField.code, error_name: key, error_value: value
+        }))]
+      };
+    }
     this.toolbarEmitter.emit({ button: 'onFormStatusChange', event });
   }
 
@@ -340,6 +384,10 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
   }
 
   valueChanges(event: any) {
+    this.lastFormValue = event;
+    if (this.shellControl) {
+      event = { ...event, [this.shellField.code]: this.shellControl.value };
+    }
         // Normalize null values for all nestedselect inputs to empty arrays
         if (this.formFieldProperties && Array.isArray(this.formFieldProperties)) {
           _.forEach(this.formFieldProperties, (section) => {
@@ -385,6 +433,9 @@ export class MetaFormComponent implements OnChanges, OnDestroy {
     this.onComponentDestroy$.complete();
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if (this.shellControlSubscription) {
+      this.shellControlSubscription.unsubscribe();
     }
   }
 }

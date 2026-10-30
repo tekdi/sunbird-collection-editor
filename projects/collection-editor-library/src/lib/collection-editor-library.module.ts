@@ -14,6 +14,7 @@ import { EditorComponent } from './components/editor/editor.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FancyTreeComponent } from './components/fancy-tree/fancy-tree.component';
 import { MetaFormComponent } from './components/meta-form/meta-form.component';
+import { ShellFieldComponent } from './components/shell-field/shell-field.component';
 import { LibraryComponent } from './components/library/library.component';
 import { LibraryFilterComponent } from './components/library-filter/library-filter.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
@@ -63,6 +64,7 @@ import { QualityParamsModalComponent } from './components/quality-params-modal/q
     HeaderComponent,
     FancyTreeComponent,
     MetaFormComponent,
+    ShellFieldComponent,
     LibraryComponent,
     LibraryFilterComponent,
     LibraryListComponent,

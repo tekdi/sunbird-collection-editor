@@ -213,6 +213,14 @@ lib-meta-form{
       min-height: 1100px;
     }
   }
+  // lib-shell-field renders outside sb-dynamic-form, so the min-height moves to the wrapper holding both
+  .meta-form.has-shell-field{
+    display: block;
+    min-height: 1100px;
+    sb-dynamic-form .dynamic-form{
+      min-height: auto;
+    }
+  }
 }
 .text-center { text-align: center }
 .text-left { text-align: left }

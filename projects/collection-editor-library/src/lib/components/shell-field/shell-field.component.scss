@@ -1,0 +1,148 @@
+.shell-field {
+  margin: 1rem 0;
+
+  label {
+    font-size: 16px;
+  }
+
+  .required {
+    color: red;
+  }
+}
+
+.shell-select {
+  position: relative;
+
+  &__control {
+    display: flex;
+    align-items: center;
+    border: .5px solid #333333;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+
+  &__clear {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 6px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  &__arrow {
+    margin: 0 8px;
+  }
+
+  &.invalid &__control {
+    border-color: red;
+  }
+
+  &.disabled &__control {
+    background: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+  // fixed so the panel is not clipped by the editor's scroll container / bottom bar; top/left/width set from code
+  &__panel {
+    position: fixed;
+    z-index: 1000;
+    overflow-y: auto;
+    background: #fff;
+    border: .5px solid #333333;
+    border-top: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .12);
+
+    &.drop-up {
+      border-top: .5px solid #333333;
+      border-bottom: none;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, .12);
+    }
+  }
+
+  &__clear-option {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #db2828;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+
+    &:hover {
+      background: #fff6f6;
+    }
+  }
+
+  &__info {
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #999;
+  }
+}
+
+.shell-option {
+  padding: 8px 16px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+
+  &:hover {
+    background: #f2f6ff;
+  }
+
+  &.selected {
+    background: #e3ecff;
+    border-left: 3px solid #024f9d;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+  }
+
+  &__status {
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+    background: #e6f4ea;
+    color: #1e7e34;
+  }
+
+  &__desc {
+    font-size: 12px;
+    color: #555;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    font-size: 11px;
+    color: #888;
+    margin-top: 2px;
+  }
+}
+
+.cf-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
